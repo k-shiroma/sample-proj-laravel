@@ -158,20 +158,6 @@ Laravel + Vagrant + VirtualBox の仮想開発環境を提供します。
   - PW: vagrant  
     ※rootユーザのパスワードは不明だが、[sudo su]でrootになれる
 
-1. DB、ユーザ作成、接続確認
-     
-  ```
-  sudo su
-  mysql
-  mysql> CREATE DATABASE sample_proj_db CHARACTER SET utf8;
-  mysql> GRANT ALL PRIVILEGES ON sample_proj_db.* TO sample_proj_user@localhost IDENTIFIED BY 'password' WITH GRANT OPTION;
-  mysql> \q
-  su vagrant
-  mysql -u sample_proj_user -ppassword
-  mysql> use sample_proj_db
-  mysql> \q
-  ```
-    
 1. プロジェクト作成
 
   ```
@@ -202,7 +188,34 @@ Laravel + Vagrant + VirtualBox の仮想開発環境を提供します。
     'timezone' => 'Asia/Tokyo',
     'locale' => 'ja',
     ```
+
+1. 環境反映
+  1. cmdから下記実行
   
+    ```
+    cd c:\sample\Homestead
+    vagrant provision
+    ```
+
 1. http://homestead.app または http://192.168.10.10 に接続し動作確認
 
 ---
+
+
+<!--
+
+1. DB、ユーザ作成、接続確認
+     
+  ```
+  sudo su
+  mysql
+  mysql> CREATE DATABASE sample_proj_db CHARACTER SET utf8;
+  mysql> GRANT ALL PRIVILEGES ON sample_proj_db.* TO sample_proj_user@localhost IDENTIFIED BY 'password' WITH GRANT OPTION;
+  mysql> \q
+  su vagrant
+  mysql -u sample_proj_user -ppassword
+  mysql> use sample_proj_db
+  mysql> \q
+  ```
+
+-->
