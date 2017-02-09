@@ -18,27 +18,20 @@ Laravel サンプル実装
 
 ---
 
-## 環境構築
-
+## 環境構築(共通)
 ### VirtualBox
-
 #### インストール
-
 1. [VirtualBox-5.1.14-112924-Win.exe]取得、実行
 1. デフォルトインストールでOK
 
 ### vagrant
-
 #### インストール
-
 1. [vagrant_1.9.1.msi]取得、実行
 1. デフォルトインストールでOK
   ※PC再起動が必要
 
 ### Git for Windows
-
 #### インストール
-
 1. [Git-2.11.0.3-64-bit.exe]取得、実行
 1. [Adjusting your PATH environment]画面  
    [Use Git from the Windows Command Prompt]チェックON
@@ -51,20 +44,15 @@ Laravel サンプル実装
    [Enable Git Credential Manager]選択
 
 ### eclipse
-
 #### インストール
-
 1. [pleiades-4.6.2-php-win-64bit-jre_20161221.zip]取得、[c:\sample]に解凍
 1. [c:\sample\pleiades\]となっていればOK
 
 ### PuTTY
-
 #### インストール
-
 1. [putty-0.67-jp20160306.zip]取得、解凍し任意の場所に配置
 
 #### キー作成
-
 1. [解凍したフォルダ]/puttygen.exe 実行
 1. [Generate]
 1. マウスをぐりんぐりん動かす
@@ -72,10 +60,9 @@ Laravel サンプル実装
   ※後で配置します
 
 ### Laravel Homestead
-
 Laravel + Vagrant + VirtualBox の仮想開発環境を提供します。
 
-#### 環境設定(プロジェクト新規作成時)
+#### 設定
 1. cmd起動
 1. box を vagrant に設定(10分程度かかります)
   ※どのboxを使用するか聞かれるので [2) virtualbox] を選択 (2 入力 -> Enter)
@@ -158,9 +145,12 @@ Laravel + Vagrant + VirtualBox の仮想開発環境を提供します。
   - PW: vagrant  
     ※rootユーザのパスワードは不明だが、[sudo su]でrootになれる
 
+## 環境構築(プロジェクト新規作成時)
+1. PuTTY で接続
 1. プロジェクト作成
 
   ```
+  cd Code
   composer create-project laravel/laravel sample-proj-laravel --prefer-dist
   ```
 
@@ -200,6 +190,39 @@ Laravel + Vagrant + VirtualBox の仮想開発環境を提供します。
 1. http://homestead.app または http://192.168.10.10 に接続し動作確認
 
 ---
+
+## 環境構築(gitからプロジェクト取得時)
+1. プロジェクトのライブラリ取得
+   vandorフォルダに各ライブラリが入る(リポジトリにvandorがあったらignoreする)
+
+	```
+	$ composer install
+	```
+
+1. .evn設定
+  1. サンプルからコピー
+
+	  ```
+	  $ cp .env.example .env
+	  ```
+
+  1. .envファイルを開き環境に合わせて修正
+  1. アプリケーションキー初期化
+
+	  ```
+	  cd ~/Code/sample-proj-laravel
+	  php artisan key:generate
+	  ```
+
+  1. DB作成、データ投入
+
+  	```
+  	php artisan migrate
+  	php artisan db:seed
+  	```
+
+- 参考URL
+	- http://vdeep.net/laravel-git-clone
 
 
 <!--
